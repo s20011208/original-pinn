@@ -1,0 +1,30 @@
+seed: 1234
+gpu_cnt: 1
+equation:
+  T: 1.0
+  x_dim: 1
+model: 
+  g_type: mlp
+  derivative: pinn
+  width: 32
+  depth: 5
+train:
+  iteration: 12000
+  batch:
+    domain_size: 200
+    initial_size: 50
+    spatial_boundary_size: 70
+  loss:
+    domain: 1.0
+    initial: 500
+    spatial_boundary: 500
+  lr: 1e-3
+  scheduler:
+    name: linear # const, linear or step
+    step_size: -1 # required for step LR scheduler
+    gamma: 0.5
+    warm_up_steps: 0
+test:
+  step: 1000 # evaluate every x epochs
+  total_size: 10000
+  batch_size: 200
